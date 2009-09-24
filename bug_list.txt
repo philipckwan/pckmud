@@ -1,0 +1,10 @@
+-fix "ask:" to accept ":"
+-telnet session varying line break problem
+-disconnect telnet from client side causes infinite loop on server
+
+improvement to polygon category
+-right angle triangle
+-square, rectangle, trapezoid
+
+long term improvement
+-make it web based

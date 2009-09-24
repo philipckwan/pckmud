@@ -1,0 +1,181 @@
+<<<
+state:A
+tell:
+This MUD example helps you to categorize a polygon
+Think of a polygon in your mind.
+:llet
+ask:Does the polygon contain more than 6 sides? "yes" or "no"
+next:1:yes:more_than_6
+next:2:no:less_than_6
+>>>
+
+<<<
+state:more_than_6
+tell:
+Your polygon has more than 6 sides
+:llet
+ask:How many sides does the polygon have? "7", "8", "9", "10", "more"
+next:1:7:heptagon
+next:2:8:octagon
+next:3:9:enneagon
+next:4:10:decagon
+next:5:more:n_gon
+>>>
+
+<<<
+state:heptagon
+tell:
+You have a heptagon in your mind!
+:llet
+>>>
+
+<<<
+state:octagon
+tell:
+You have a octagon in your mind!
+:llet
+>>>
+
+<<<
+state:enneagon
+tell:
+You have a enneagon in your mind!
+:llet
+>>>
+
+<<<
+state:decagon
+tell:
+You have a decagon in your mind!
+:llet
+>>>
+
+<<<
+state:n_gon
+tell:
+You have a many sided polygon in your mind!
+:llet
+>>>
+
+<<<
+state:less_than_6
+tell:
+Your polygon has less than 6 sides
+Next, the question is about whether the sides are all of equal length
+:llet
+ask:Are all sides of the polygon of equal length? "yes" or "no"
+next:1:yes:equal
+next:2:no:unequal
+>>>
+
+<<<
+state:equal:equal
+next:1:*:sides
+>>>
+
+<<<
+state:unequal:unequal
+next:1:*:sides
+>>>
+
+<<<
+state:sides
+tell:
+Now, I will ask about the number of sides again
+:llet
+ask:How many sides does the polygon have? "1", "2", "3", "4", "5", "6"
+next:1:1:circle
+next:2:2:impossible
+next:3:3:triangle
+next:4:4:quadrilateral
+next:5:5:pentagon
+next:6:6:hexagon
+>>>
+
+<<<
+state:circle
+tell:
+You have a circle in your mind!
+:llet
+>>>
+
+
+<<<
+state:impossible
+tell:
+You have an impossible 2 sided polygon in your mind!
+:llet
+>>>
+
+<<<
+state:triangle
+tell:
+You have a triangle in your mind, but I will guess more characteristics
+:llet
+next:1:equal==T:equilateral
+next:2:*:other_triangle
+>>>
+
+<<<
+state:equilateral
+tell:
+You have an equilateral triangle in your mind
+:llet
+>>>
+
+<<<
+state:other_triangle
+ask:Are two sides of the triangle of equal length? "yes" or "no"
+next:1:yes:isosceles
+next:2:no:not_isosceles
+>>>
+
+<<<
+state:isosceles
+tell:
+You have an isosceles triangle in your mind!
+:llet
+>>>
+
+<<<
+state:not_isosceles
+tell:
+You have an irregular triangle in your mind!
+:llet
+>>>
+
+
+<<<
+state:pentagon
+tell:
+You have a pentagon in your mind!
+:llet
+>>>
+
+<<<
+state:hexagon
+tell:
+You have a hexagon in your mind!
+:llet
+>>>
+
+<<<
+state:quadrilateral
+next:1:equal==T:square
+next:2:*:other_quad
+>>>
+
+<<<
+state:square
+tell:
+You have a square in your mind!
+:llet
+>>>
+
+<<<
+state:other_quad
+tell:
+You have a non-square quadrilateral in your mind!
+:llet
+>>>
+

@@ -1,0 +1,60 @@
+<project name="build.xml" default="build">
+
+    <!--
+    Load the example source properties.
+    -->
+    <property file="./build.properties"/>
+
+    <path id="project.classpath">
+        <pathelement location="${build.classes.dir}"/>
+    </path>
+    <path id="runtime.classpath">
+        <path refid="project.classpath"/>
+        <pathelement location="${jdbc.driver.jar}"/>
+    	<pathelement location="${junit.jar}"/>
+    	<pathelement location="${xerces.jar}"/>
+        <pathelement location="${src.java.dir}"/>
+    </path>
+    <path id="hibernate.runtime.classpath" refid="runtime.classpath"/>
+
+    <target name="clean">
+        <delete dir="${build.classes.dir}"/>
+    	<delete dir="${build.jars.dir}"/>
+        <delete dir="${junit.output}"/>
+    </target>
+    <target name="init">
+        <mkdir dir="${build.classes.dir}"/>
+    	<mkdir dir="${build.jars.dir}"/>
+        <mkdir dir="${junit.output}"/>
+    </target>
+    <target name="compile" depends="init">
+        <javac srcdir="${src.java.dir}" destdir="${build.classes.dir}"
+        	   debug="true" debuglevel="lines,vars,source">
+        </javac>
+    </target>
+
+	<target name="build" depends="clean, compile" >
+		<echo>Done building!</echo>
+	</target>
+	
+	<target name="play" depends="build" >
+		<java classname="com.pck.mud.MudMain" failonerror="true">
+			<classpath refid="runtime.classpath" />
+		</java>
+	</target>
+	
+	<target name="jar" depends="build" >
+		<jar destfile="${build.jars.dir}/mud.jar"
+			 basedir="${build.classes.dir}"
+		/>
+	</target>
+
+	<target name="run" >
+		<java classname="com.pck.mud.MudMain" failonerror="true">
+			<classpath refid="runtime.classpath" />
+			<arg line="-states_filename polygon_categorizer.txt -start_state A" />
+		</java>
+	</target>
+    <!-- target name="schema-export" depends="compile,hibernate-build.schema-export"/ -->
+
+</project>
