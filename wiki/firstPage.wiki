@@ -34,7 +34,9 @@ The build.xml already contains the default argument list to run the program.
 
 If you want to run it manually (assume you are at the project root, same place you running the ant commands, also assume you have created the jar file):
 
+{{{
 >java -cp build\jars\mud.jar com.pck.mud.MudMain -states_filename polygon_categorizer.txt -start_state A
+}}}
 
 ==Connecting to the running program==
 You need to use telnet from command line:
