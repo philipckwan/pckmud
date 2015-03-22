@@ -1,0 +1,1 @@
+A server application that reads in client inputs and pick the next state. The result is an experience to client like an interactive fiction. The ultimate goal is to make a "multi-user dungeon" type of game.
